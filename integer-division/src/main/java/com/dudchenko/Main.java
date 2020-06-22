@@ -9,7 +9,7 @@ public class Main {
 	
 		System.out.println("Let's make a division! Type a dividend");
 		int dividend = scanner.nextInt();
-		System.out.println("Type a divisor, cannot be zero");
+		System.out.println("Type a divisor, can not be zero");
 		int divisor = scanner.nextInt();
 	
 		Division division = new Division();

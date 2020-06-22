@@ -17,7 +17,7 @@ public class Division {
         divisor = Math.abs(divisor);
 
         if (dividend < divisor) {
-            return "" + dividend + "/" + divisor + "=0";
+            return "Quotient = 0";
         }
 
         String[] digits = String.valueOf(dividend).split("");
