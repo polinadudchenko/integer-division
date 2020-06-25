@@ -1,12 +1,12 @@
 package com.dudchenko;
 
-public class Division {
-	
-	private StringBuilder result = new StringBuilder();
-    private StringBuilder quotient = new StringBuilder();
+class Division {
+	  
+    private DivisionResult divisionResult = new DivisionResult();
     private StringBuilder reminder = new StringBuilder();
 
-    public String makeDivision(int dividend, int divisor) {
+    public DivisionResult divide(int dividend, int divisor) {
+    	
     	
     	boolean quotientIsNegative = false;
     	if (dividend < 0 || divisor < 0) {
@@ -17,7 +17,8 @@ public class Division {
         divisor = Math.abs(divisor);
 
         if (dividend < divisor) {
-            return "Quotient = 0";
+            divisionResult.setResultZero(true);
+            return divisionResult;
         }
 
         String[] digits = String.valueOf(dividend).split("");
@@ -34,69 +35,31 @@ public class Division {
                 mod = reminderNumber % divisor;
                 multiplyResult = reminderNumber / divisor * divisor;
 
-                String lastReminder = String.format("%" + (i + 2) + "s", "_" + reminderNumber.toString());
-                result.append(lastReminder).append("\n");
-
-                String multiply = String.format("%" + (i + 2) + "d", multiplyResult);
-                result.append(multiply).append("\n");
-
-                Integer tab = lastReminder.length() - calculateDigit(multiplyResult);
-                result.append(makeDivider(reminderNumber, tab)).append("\n");
+                divisionResult.appendResult(reminderNumber.toString());
+                divisionResult.appendResult(multiplyResult.toString());
                 
-                if (quotientIsNegative && quotient.length()==0) {
-                	quotient.append("-" + reminderNumber / divisor);
+                if (quotientIsNegative && divisionResult.getQuotient().length()==0) {
+                	divisionResult.appendQuotient("-" + reminderNumber / divisor);
                 } else {
-                	quotient.append(reminderNumber / divisor);
+                	divisionResult.appendQuotient(String.valueOf(reminderNumber / divisor));
                 }
 
                 reminder.replace(0, reminder.length(), mod.toString());
                 reminderNumber = Integer.parseInt(reminder.toString());
             } else {
                 if (i >= divisorDigit) {
-                    quotient.append(0);
+                	divisionResult.appendQuotient(String.valueOf(0));
                 }
             }
-
             if (i == digits.length - 1) {
-                result.append(String.format("%" + (i + 2) + "s", reminderNumber.toString())).append("\n");
+            	divisionResult.appendResult(reminderNumber.toString());
             }
         }
-        modifyResultToView(dividend, divisor);
-        return result.toString();
-    }
-
-    private String makeDivider(Integer reminderNumber, Integer tab) {
-        return assemblyString(tab, ' ') + assemblyString(calculateDigit(reminderNumber), '-');
-    }
-
-    private void modifyResultToView(Integer dividend, Integer divisor) {
-        int[] index = new int[3];
-        for (int i = 0, j = 0; i < result.length(); i++) {
-            if (result.charAt(i) == '\n') {
-                index[j] = i;
-                j++;
-            }
-
-            if (j == 3) {
-                break;
-            }
-        }
-
-        int tab = calculateDigit(dividend) + 1 - index[0];
-        result.insert(index[2], assemblyString(tab, ' ') + "|" + quotient.toString());
-        result.insert(index[1], assemblyString(tab, ' ') + "|" + assemblyString(quotient.length(), '-'));
-        result.insert(index[0], "|" + divisor);
-        result.replace(1, index[0], dividend.toString());
+        return divisionResult;
     }
 
     private int calculateDigit(int i) {
         return (int) Math.log10(i) + 1;
     }
-    private String assemblyString(int numberOfSymbols, char symbol) {
-        StringBuilder string = new StringBuilder();
-        for (int i = 0; i < numberOfSymbols; i++) {
-            string.append(symbol);
-        }
-        return string.toString();
-    }
+
 }
