@@ -1,12 +1,13 @@
 package com.dudchenko;
 
-import lombok.Data;
+import java.util.ArrayList;
 
-@Data
 public class DivisionResult {
 	
-	private StringBuilder result = new StringBuilder();
-    private StringBuilder quotient = new StringBuilder();
+    private ArrayList<String> minuend = new ArrayList<String>();
+    private ArrayList<String> subtrahend = new ArrayList<String>();
+    private StringBuilder quotient = new StringBuilder();    
+    
 	private boolean resultZero;
 	
 	public boolean getResultZero() {
@@ -18,19 +19,27 @@ public class DivisionResult {
 		
 	}
 	
-	public StringBuilder getResult() {
-		return result;
+	public ArrayList<String> getMinuend() {
+		return minuend;
 	}
 	
-	public void appendResult(String result) {
-		this.result.append(result).append(" ");
+	public void addMinuend(String minuend) {
+		this.minuend.add(minuend);
+	}
+	
+	public ArrayList<String> getSubtrahend() {
+		return subtrahend;
+	}
+	
+	public void addSubtrahend(String subtrahend) {
+		this.subtrahend.add(subtrahend);
 	}
 	
 	public StringBuilder getQuotient() {
 		return quotient;
 	}
 	
-	public void appendQuotient(String quotient) {
+	public void appendQuotient(int quotient) {
 		this.quotient.append(quotient);
 	}
 }

@@ -7,12 +7,8 @@ class Division {
 
     public DivisionResult divide(int dividend, int divisor) {
     	
+    	divisionResult.appendQuotient(dividend / divisor);
     	
-    	boolean quotientIsNegative = false;
-    	if (dividend < 0 || divisor < 0) {
-    		quotientIsNegative = true;
-    	}
-
         dividend = Math.abs(dividend);
         divisor = Math.abs(divisor);
 
@@ -35,24 +31,16 @@ class Division {
                 mod = reminderNumber % divisor;
                 multiplyResult = reminderNumber / divisor * divisor;
 
-                divisionResult.appendResult(reminderNumber.toString());
-                divisionResult.appendResult(multiplyResult.toString());
+                divisionResult.addMinuend(reminderNumber.toString());
+                divisionResult.addSubtrahend(multiplyResult.toString());
                 
-                if (quotientIsNegative && divisionResult.getQuotient().length()==0) {
-                	divisionResult.appendQuotient("-" + reminderNumber / divisor);
-                } else {
-                	divisionResult.appendQuotient(String.valueOf(reminderNumber / divisor));
-                }
+               
 
                 reminder.replace(0, reminder.length(), mod.toString());
                 reminderNumber = Integer.parseInt(reminder.toString());
-            } else {
-                if (i >= divisorDigit) {
-                	divisionResult.appendQuotient(String.valueOf(0));
-                }
-            }
+            } 
             if (i == digits.length - 1) {
-            	divisionResult.appendResult(reminderNumber.toString());
+            	divisionResult.addMinuend(reminderNumber.toString());
             }
         }
         return divisionResult;

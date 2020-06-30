@@ -8,12 +8,15 @@ public class Main {
 		Scanner scanner = new Scanner(System.in);
 	
 		System.out.println("Let's make a division! Type a dividend");
-		int dividend = scanner.nextInt();
+		String dividend = scanner.nextLine();
 		System.out.println("Type a divisor, can not be zero");
-		int divisor = scanner.nextInt();
+		String divisor = scanner.nextLine();
 	
 		Division division = new Division();
-		DivisionResult result = division.divide(dividend, divisor);
-		System.out.println(result.getResult());
+		DivisionResult result = division.divide(Integer.parseInt(dividend), Integer.parseInt(divisor));
+		
+		DivisionFormatter formatter =  new DivisionFormatter();
+				
+		System.out.print(formatter.format(dividend, divisor, result));
 	}
 }
