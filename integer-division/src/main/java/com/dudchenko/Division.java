@@ -11,6 +11,9 @@ class Division {
     	
         dividend = Math.abs(dividend);
         divisor = Math.abs(divisor);
+        
+        divisionResult.addInputData(dividend);
+    	divisionResult.addInputData(divisor);
 
         if (dividend < divisor) {
             divisionResult.setResultZero(true);
