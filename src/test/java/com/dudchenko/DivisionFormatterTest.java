@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
-class DivisionTest {
+class DivisionFormatterTest {
 	
 	private Division division;
 	private DivisionFormatter formatter;
@@ -18,30 +18,30 @@ class DivisionTest {
 	@Test
     public void givenNegativeDividend_whenMakeDivision_thenNegativeQuotient() {
 		
-		StringBuilder actualResult = formatter.format(division.divide(-86, 12));
+		String actualResult = formatter.format(division.divide(-86, 12));
         		
 		String expectedResult =   "_86|12" + System.lineSeparator() + 
                             " 84|--" + System.lineSeparator() + 
                             " --|-7" + System.lineSeparator() + 
-                            "  2"; //+ System.lineSeparator();
+                            "  2"; 
 		assertEquals(expectedResult, actualResult.toString());
     }
 	
 	@Test
     public void givenNegativeDivisor_whenMakeDivision_thenNegativeQuotient() {
 		
-		StringBuilder actualResult = formatter.format(division.divide(86, -12));
+		String actualResult = formatter.format(division.divide(86, -12));
         String expectedResult =   "_86|12" + System.lineSeparator() + 
                             	" 84|--" + System.lineSeparator() + 
                             	" --|-7" + System.lineSeparator() + 
-                            	"  2"; // + System.lineSeparator();
+                            	"  2"; 
         assertEquals(expectedResult, actualResult.toString());
     }
 	
 	@Test
     public void givenDividendFewerThanDivisor_whenMakeDivision_thenQuotientIsZero() {
 		
-		StringBuilder actualResult = formatter.format(division.divide(12, 86));
+		String actualResult = formatter.format(division.divide(12, 86));
         String expectedResult =   "12/86=0";
         assertEquals(expectedResult, actualResult.toString());
     }
@@ -49,30 +49,30 @@ class DivisionTest {
 	@Test
     public void givenSingleDividendAndDivisor_whenMakeDivision_thenSingleQuotient() {
 		
-		StringBuilder actualResult = formatter.format(division.divide(9, 2));
+		String actualResult = formatter.format(division.divide(9, 2));
         String expectedResult =   "_9|2" + System.lineSeparator() + 
                             	" 8|-" + System.lineSeparator() + 
                             	" -|4" + System.lineSeparator() + 
-                            	" 1"; // + System.lineSeparator();
+                            	" 1"; 
         assertEquals(expectedResult, actualResult.toString());
     }
 	
 	@Test
     public void givenDivisionWithoutReminder_whenMakeDivision_thenQuotientWithoutReminder() {
 		
-		StringBuilder actualResult = formatter.format(division.divide(8, 2));
+		String actualResult = formatter.format(division.divide(8, 2));
 		
         String expectedResult =   "_8|2" + System.lineSeparator() + 
                             	" 8|-" + System.lineSeparator() + 
                             	" -|4" + System.lineSeparator() + 
-                            	" 0"; // + System.lineSeparator();
+                            	" 0";
         assertEquals(expectedResult, actualResult.toString());
     }
 	
     @Test
     public void givenDivision_whenMakeDivision_thenQuotient() {
     	
-        StringBuilder actualResult = formatter.format(division.divide(14789, 20));
+        String actualResult = formatter.format(division.divide(14789, 20));
     	
     	String expectedResult =   "_14789|20" + System.lineSeparator() + 
                             	" 140  |---" + System.lineSeparator() + 
@@ -83,7 +83,7 @@ class DivisionTest {
                             	"  _189" + System.lineSeparator() +  
                             	"   180" + System.lineSeparator() +  
                             	"   ---" + System.lineSeparator() +  
-                            	"     9"; // + System.lineSeparator();
+                            	"     9"; 
         assertEquals(expectedResult, actualResult.toString());
     }
 }
