@@ -4,12 +4,12 @@ class Division {
 
 	public DivisionResult divide(int dividend, int divisor) {
 
-		DivisionResult divisionResult = new DivisionResult();
-		StringBuilder reminder = new StringBuilder();
-
 		if (divisor == 0) {
 			throw new IllegalArgumentException("Divisor cannot be 0, division by zero");
 		}
+
+		DivisionResult divisionResult = new DivisionResult();
+		StringBuilder reminder = new StringBuilder();
 
 		divisionResult.appendQuotient(dividend / divisor);
 

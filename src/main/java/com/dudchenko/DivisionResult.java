@@ -18,7 +18,7 @@ public class DivisionResult {
 	public void setDividend(int dividend) {
 		this.dividend = dividend;
 	}
-	
+
 	public int getDivisor() {
 		return divisor;
 	}
