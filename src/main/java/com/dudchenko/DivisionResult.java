@@ -59,4 +59,37 @@ public class DivisionResult {
 		this.resultZero = resultZero;
 
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DivisionResult other = (DivisionResult) obj;
+		if (dividend != other.dividend)
+			return false;
+		if (divisor != other.divisor)
+			return false;
+		if (minuend == null) {
+			if (other.minuend != null)
+				return false;
+		} else if (!minuend.equals(other.minuend))
+			return false;
+		if (quotient == null) {
+			if (other.quotient != null)
+				return false;
+		} else if (!quotient.toString().equals(other.quotient.toString()))
+			return false;
+		if (resultZero != other.resultZero)
+			return false;
+		if (subtrahend == null) {
+			if (other.subtrahend != null)
+				return false;
+		} else if (!subtrahend.equals(other.subtrahend))
+			return false;
+		return true;
+	}
 }

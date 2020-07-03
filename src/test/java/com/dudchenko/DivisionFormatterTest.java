@@ -17,7 +17,6 @@ class DivisionFormatterTest {
 
 	@Test
 	public void givenNegativeDividend_whenMakeDivision_thenNegativeQuotient() {
-
 		StringBuilder expectedResult = new StringBuilder();
 		expectedResult.append("_86|12").append(System.lineSeparator());
 		expectedResult.append(" 84|--").append(System.lineSeparator());
@@ -30,7 +29,6 @@ class DivisionFormatterTest {
 
 	@Test
 	public void givenNegativeDivisor_whenMakeDivision_thenNegativeQuotient() {
-
 		StringBuilder expectedResult = new StringBuilder();
 		expectedResult.append("_86|12").append(System.lineSeparator());
 		expectedResult.append(" 84|--").append(System.lineSeparator());
@@ -43,7 +41,6 @@ class DivisionFormatterTest {
 
 	@Test
 	public void givenDividendFewerThanDivisor_whenMakeDivision_thenQuotientIsZero() {
-
 		StringBuilder expectedResult = new StringBuilder();
 		expectedResult.append("12/86=0");
 		String actualResult = formatter.format(division.divide(12, 86));
@@ -53,7 +50,6 @@ class DivisionFormatterTest {
 
 	@Test
 	public void givenSingleDividendAndDivisor_whenMakeDivision_thenSingleQuotient() {
-
 		StringBuilder expectedResult = new StringBuilder();
 		expectedResult.append("_9|2").append(System.lineSeparator());
 		expectedResult.append(" 8|-").append(System.lineSeparator());
@@ -66,7 +62,6 @@ class DivisionFormatterTest {
 
 	@Test
 	public void givenDivisionWithoutReminder_whenMakeDivision_thenQuotientWithoutReminder() {
-
 		StringBuilder expectedResult = new StringBuilder();
 		expectedResult.append("_8|2").append(System.lineSeparator());
 		expectedResult.append(" 8|-").append(System.lineSeparator());
@@ -79,7 +74,6 @@ class DivisionFormatterTest {
 
 	@Test
 	public void givenDivision_whenMakeDivision_thenQuotient() {
-
 		StringBuilder expectedResult = new StringBuilder();
 		expectedResult.append("_14789|20").append(System.lineSeparator());
 		expectedResult.append(" 140  |---").append(System.lineSeparator());
