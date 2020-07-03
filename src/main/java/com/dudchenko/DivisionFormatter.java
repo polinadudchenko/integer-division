@@ -9,8 +9,8 @@ public class DivisionFormatter {
 
 		StringBuilder resultString = new StringBuilder();
 
-		if (result.getResultZero()) {
-			resultString.append(String.format("%s" + "%d", dividend + "/" + divisor + "=", 0));
+		if (result.isResultZero()) {
+			resultString.append(String.format("%s" + "%s", dividend + "/" + divisor + "=", result.getQuotient()));
 			return resultString.toString();
 		}
 

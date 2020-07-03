@@ -51,7 +51,7 @@ public class DivisionResult {
 		this.quotient.append(quotient);
 	}
 
-	public boolean getResultZero() {
+	public boolean isResultZero() {
 		return resultZero;
 	}
 

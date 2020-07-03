@@ -24,27 +24,54 @@ class DivisionTest {
 
 	@Test
 	public void givenDividendLessAsDivisor_whenDivide_thenResultZeroIsTrue() {
-		assertTrue(division.divide(2, 3).getResultZero());
+		DivisionResult expected = new DivisionResult();
+		expected.appendQuotient(0);
+		DivisionResult actual = division.divide(2, 3);
+
+		assertEquals(expected.getQuotient().toString(), actual.getQuotient().toString());
 	}
 
 	@Test
 	public void givenDivisionWithoutReminder_whenDivide_thenLastMinuendElementIsZero() {
-		DivisionResult result = division.divide(21, 3);
-		String actual = result.getMinuend().get(result.getMinuend().size() - 1);
-		assertEquals("0", actual);
+		DivisionResult expected = new DivisionResult();
+		expected.addMinuend("21");
+		expected.addMinuend("0");
+		DivisionResult actual = division.divide(21, 3);
+
+		assertEquals(expected.getMinuend().get(expected.getMinuend().size() - 1),
+				actual.getMinuend().get(actual.getMinuend().size() - 1));
 	}
 
 	@Test
-	public void givenDividendBiggerAsDivisor_whenDivide_thenMinuendSizeBiggerAsSubtrahendSize() {
-		DivisionResult result = division.divide(25, 12);
-		assertTrue(result.getMinuend().size() > result.getSubtrahend().size());
+	public void givenDivisionWithManyDividers_whenDivide_thenAddMinuendWorkProperly() {
+		DivisionResult expected = new DivisionResult();
+		expected.addMinuend("147");
+		expected.addMinuend("78");
+		expected.addMinuend("189");
+		expected.addMinuend("9");
+		DivisionResult actual = division.divide(14789, 20);
+
+		assertTrue(expected.getMinuend().size() == actual.getMinuend().size());
+	}
+
+	@Test
+	public void givenDivisionWithManyDividers_whenDivide_thenAddSubtrahendWorkProperly() {
+		DivisionResult expected = new DivisionResult();
+		expected.addSubtrahend("140");
+		expected.addSubtrahend("60");
+		expected.addSubtrahend("180");
+		DivisionResult actual = division.divide(14789, 20);
+
+		assertTrue(expected.getSubtrahend().size() == actual.getSubtrahend().size());
 	}
 
 	@Test
 	public void givenDivisionWithNegativeQuotient_whenDivide_thenGetNegativeQuotient() {
-		DivisionResult result = division.divide(-21, 3);
-		String actual = result.getQuotient().toString();
-		assertEquals("-7", actual);
+		DivisionResult expected = new DivisionResult();
+		expected.appendQuotient(-7);
+		DivisionResult actual = division.divide(-21, 3);
+
+		assertEquals(expected.getQuotient().toString(), actual.getQuotient().toString());
 	}
 
 }
